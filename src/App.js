@@ -7,6 +7,7 @@ function App() {
   const [red, setRed] = useState(130);
   const [green, setGreen] = useState(150);
   const [blue, setBlue] = useState(170);
+  const [opacity, setOpacity] = useState(0.8);
 
   const colour = useRef(`rgb(${red},${green},${blue})`);
 
@@ -41,9 +42,13 @@ function App() {
           <li className="list-group-item">
             <input type="range" min="0" max="255" value={blue} onChange={(e)=>{setBlue(e.target.value)}} /><label className="slider px-3 text-primary" id="blue"><b>Blue</b></label>
           </li>
+          <li className="list-group-item">
+            <input type="range" min="0" max="10" value={opacity} onChange={(e) => {setOpacity(e.target.value)}} /><labbel className="slider px-3 text-primary" id="opacity"><b>Opacity</b></labbel>
+          </li>
         </ul>
         <div className="card-body row text-centre">
           <p className="card-text col" id="rgb">{`rgb(${red},${green},${blue})`}</p>
+          <p className="card-text col" id="rgba">{`rgba(${red},${green},${blue},${opacity}/10)`}</p>
           <p className="card-text col">#<span id="hexcode">{findHexCode(red) + findHexCode(green) + findHexCode(blue)}</span>
           </p>
         </div>
