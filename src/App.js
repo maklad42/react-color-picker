@@ -7,12 +7,12 @@ function App() {
   const [red, setRed] = useState(130);
   const [green, setGreen] = useState(150);
   const [blue, setBlue] = useState(170);
-  const [opacity, setOpacity] = useState(0.8);
+  const [opacity, setOpacity] = useState(0.5);
 
   const colour = useRef(`rgb(${red},${green},${blue})`);
 
   useEffect(() => {
-    colour.current = `rgb(${red},${green},${blue})`;
+    colour.current = `rgba(${red},${green},${blue},${opacity})`;
   });
 
   const hexList = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F'];
@@ -43,13 +43,13 @@ function App() {
             <input type="range" min="0" max="255" value={blue} onChange={(e)=>{setBlue(e.target.value)}} /><label className="slider px-3 text-primary" id="blue"><b>Blue</b></label>
           </li>
           <li className="list-group-item">
-            <input type="range" min="0" max="10" value={opacity} onChange={(e) => {setOpacity(e.target.value)}} /><labbel className="slider px-3 text-primary" id="opacity"><b>Opacity</b></labbel>
+            <input type="range" min="0" max="1.0" step="0.1" value={opacity} onChange={(e) => {setOpacity(e.target.value)}} /><label className="slider px-3 text-primary" id="opacity"><b>Opacity</b></label>
           </li>
         </ul>
-        <div className="card-body row text-centre">
-          <p className="card-text col" id="rgb">{`rgb(${red},${green},${blue})`}</p>
-          <p className="card-text col" id="rgba">{`rgba(${red},${green},${blue},${opacity}/10)`}</p>
-          <p className="card-text col">#<span id="hexcode">{findHexCode(red) + findHexCode(green) + findHexCode(blue)}</span>
+        <div className="card-body row text-center">
+          <p className="card-text clr-code col" id="rgb">{`rgb(${red},${green},${blue})`}</p><br />
+          <p className="card-text clr-code col" id="rgba">{`rgba(${red},${green},${blue},${opacity})`}</p><br />
+          <p className="card-text clr-code col">#<span id="hexcode">{findHexCode(red) + findHexCode(green) + findHexCode(blue)}</span>
           </p>
         </div>
       </div>
